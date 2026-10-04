@@ -215,23 +215,6 @@ button:disabled {
   min-width: 90px;
 }
 
-.preset-key::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 8px;
-  vertical-align: 0;
-}
-
-.preset-key.adverse::before {
-  background: var(--red);
-}
-
-.preset-key.clean::before {
-  background: var(--green);
-}
-
 .preset {
   color: var(--ink);
   border-bottom: 1px solid transparent;
@@ -240,6 +223,35 @@ button:disabled {
 
 .preset:hover {
   border-bottom-color: var(--ink-3);
+}
+
+.preset.adverse {
+  color: var(--red);
+}
+
+.preset.clean {
+  color: var(--green);
+}
+
+.preset-legend {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+}
+
+.dot.adverse {
+  background: var(--red);
+}
+
+.dot.clean {
+  background: var(--green);
 }
 
 .preset.active {
