@@ -28,8 +28,9 @@
 html,
 body {
   margin: 0;
+  height: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   background: var(--page);
   color: var(--ink);
   font-family: var(--font-sans);
@@ -82,13 +83,20 @@ button:disabled {
 
 /* Masthead */
 
+/* The app fills the viewport; only the two panels scroll, inside themselves. */
 .app {
+  height: 100vh;
+  height: 100dvh;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 18px 28px 48px;
+  padding: 14px 28px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .masthead {
+  flex: 0 0 auto;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -132,7 +140,8 @@ button:disabled {
 /* Intake */
 
 .intake {
-  padding: 22px 0 18px;
+  flex: 0 0 auto;
+  padding: 12px 0 10px;
 }
 
 .intake-form {
@@ -196,7 +205,7 @@ button:disabled {
 }
 
 .presets {
-  margin-top: 18px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -264,7 +273,7 @@ button:disabled {
 }
 
 .smallprint {
-  margin-top: 14px;
+  margin-top: 8px;
   font-size: 11px;
   color: var(--ink-3);
   max-width: 90ch;
@@ -273,18 +282,18 @@ button:disabled {
 /* Split */
 
 .split {
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Console: the work, on dark */
 
 .console {
-  position: sticky;
-  top: 16px;
-  max-height: calc(100vh - 32px);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   min-width: 0;
@@ -294,7 +303,6 @@ button:disabled {
   font-size: 12px;
   padding: 16px 18px 18px;
   border-radius: 4px;
-  min-height: 400px;
   overscroll-behavior: contain;
 }
 
@@ -701,9 +709,9 @@ button:disabled {
 /* Dossier: the file, on paper */
 
 .dossier {
-  position: sticky;
-  top: 16px;
   min-width: 0;
+  height: 100%;
+  min-height: 0;
 }
 
 .paper {
@@ -711,7 +719,7 @@ button:disabled {
   padding: 26px 32px 28px;
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(11, 27, 58, 0.06), 0 12px 32px -20px rgba(11, 27, 58, 0.3);
-  max-height: calc(100vh - 32px);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   overflow-wrap: anywhere;
@@ -1100,17 +1108,22 @@ button:disabled {
 }
 
 @media (max-width: 980px) {
+  html,
+  body {
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+  }
+
   .split {
     grid-template-columns: 1fr;
   }
 
-  .dossier,
-  .console {
-    position: static;
-  }
-
   .paper,
   .console {
+    height: auto;
     max-height: none;
   }
 
