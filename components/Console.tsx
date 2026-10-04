@@ -613,7 +613,7 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
             </div>
             {judgeState.status === "running" && (
               <p className="modal-wait">
-                <span className="lamp on small" /> Content is judged first without provider names, latency or cost. Then the measurements are revealed for the overall verdict. About 30 to 40 seconds.
+                <span className="lamp on small" /> Content is judged first without provider names, latency or cost. Then the measurements are revealed for the overall verdict. About 15 to 25 seconds.
               </p>
             )}
             {judgeState.status === "error" && <p className="modal-error">{judgeState.error}</p>}
