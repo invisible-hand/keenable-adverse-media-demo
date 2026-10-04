@@ -1,3 +1,5 @@
+<img src="public/keenable-logo.svg" alt="Keenable" width="190">
+
 # Adverse-media check on Keenable
 
 A demo of agentic due diligence built on [Keenable](https://keenable.ai) web search. Type a

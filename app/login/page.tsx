@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -28,8 +29,8 @@ export default function Login() {
     <main className="login">
       <form onSubmit={submit} className="login-card">
         <div className="brand">
-          <span className="brand-name">Keenable</span>
-          <span className="brand-sub">Adverse media due diligence demo</span>
+          <Image src="/keenable-logo.svg" alt="Keenable" width={150} height={28} priority />
+          <span className="brand-sub">Adverse media check</span>
         </div>
         <label htmlFor="pw">Demo password</label>
         <input id="pw" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoFocus autoComplete="current-password" />

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { JudgeResult } from "@/lib/judge";
 import { scorecard } from "@/lib/scorecard";
@@ -382,7 +383,9 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
     <div className="app">
       <header className="masthead">
         <div className="wordmark">
-          <span className="wordmark-name">Keenable</span>
+          <a href="https://keenable.ai" target="_blank" rel="noreferrer" className="wordmark-logo">
+            <Image src="/keenable-logo.svg" alt="Keenable" width={125} height={23} priority />
+          </a>
           <span className="wordmark-rule" />
           <span className="wordmark-sub">Adverse media check</span>
         </div>
