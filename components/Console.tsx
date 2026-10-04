@@ -582,8 +582,13 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
                 which provider is which, then sees the measured speed and cost and writes an overall verdict: half content, a quarter speed, a quarter cost.
               </p>
               <p className="how-note">
-                This surfaces open-web context. It is not a sanctions list screen and makes no determination about anyone; a person decides. Names on the red line have a conviction, penalty or
-                designation in an official release; the green line are expected to come back clear. Free-text checks are not stored.
+                <b>This is a simplified picture.</b> A real BSA/AML programme is far more involved: adverse media is one input among many, alongside identity verification, beneficial-ownership
+                checks, sanctions and PEP list screening, risk scoring, transaction monitoring, enhanced due diligence, case management, SAR decisions and a documented, audited process behind
+                each of them. This demo shows one step, the open-web search and the analyst&apos;s write-up, and how much faster and cheaper that step gets with the right search layer.
+              </p>
+              <p className="how-note">
+                It is not a sanctions list screen and makes no determination about anyone; a person decides. Names on the red line have a conviction, penalty or designation in an official
+                release; the green line are expected to come back clear. Free-text checks are not stored.
               </p>
             </div>
           </div>

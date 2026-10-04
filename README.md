@@ -10,7 +10,12 @@ The same queries run through a second provider (Tavily by default) so the two ca
 on the same work: latency and cost measured per call, result lists side by side, and a blind LLM
 judge that scores content without knowing which provider is which.
 
-It surfaces open-web context. It is not a sanctions list screen and it decides nothing.
+It surfaces open-web context. It is not a sanctions list screen and it decides nothing. It is
+also a simplified picture: in a real BSA/AML programme adverse media is one input among many,
+next to identity verification, beneficial-ownership checks, sanctions and PEP screening, risk
+scoring, transaction monitoring, enhanced due diligence, case management and SAR decisions, each
+with a documented and audited process. The demo shows one step and how much faster and cheaper
+it gets with the right search layer.
 
 ![Console on the left shows the search log and the side by side; the file on the right fills in as the model writes](docs/screenshot.jpg)
 
