@@ -212,7 +212,7 @@ button:disabled {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-2);
-  min-width: 215px;
+  min-width: 90px;
 }
 
 .preset-key::before {
@@ -243,7 +243,7 @@ button:disabled {
 }
 
 .preset.active {
-  border-bottom-color: var(--ink);
+  border-bottom-color: currentColor;
   font-weight: 600;
 }
 

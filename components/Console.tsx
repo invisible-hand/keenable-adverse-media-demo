@@ -364,8 +364,8 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
     URL.revokeObjectURL(url);
   }
 
-  const adverse = presets.filter((p) => p.expected_outcome === "adverse");
-  const clean = presets.filter((p) => p.expected_outcome === "clean");
+  const people = presets.filter((p) => p.subject_type === "individual");
+  const companies = presets.filter((p) => p.subject_type === "organization");
   const answered = run.queries.filter((q) => q.status !== "running").length;
   const phaseText = running ? (run.phase === "searching" ? `searching · ${answered}/${run.queries.length || maxQueries} back` : (PHASE_LABELS[run.phase] ?? "working")) : run.status === "done" ? (run.judgePending ? "file complete · judge still reading" : "complete") : "stopped";
   const judge = judgeState.result ?? run.judgement;
@@ -400,22 +400,22 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
         </form>
         {showContext && <input className="context-field" value={context} onChange={(e) => setContext(e.target.value)} placeholder="Anything you know: country, employer, role, age, former names" maxLength={240} aria-label="Context" />}
         <div className="presets">
-          <div className="preset-line">
-            <span className="preset-key adverse">Adverse record on file</span>
-            {adverse.map((p) => (
-              <button key={p.id} className={`preset ${activePreset === p.id ? "active" : ""}`} onClick={() => runPreset(p)} title={p.record}>
-                {p.label}
-              </button>
-            ))}
-          </div>
-          <div className="preset-line">
-            <span className="preset-key clean">No adverse record expected</span>
-            {clean.map((p) => (
-              <button key={p.id} className={`preset ${activePreset === p.id ? "active" : ""}`} onClick={() => runPreset(p)} title={p.record}>
-                {p.label}
-              </button>
-            ))}
-          </div>
+          {[
+            ["People", people],
+            ["Companies", companies],
+          ].map(([title, list]) => (
+            <div className="preset-line" key={title as string}>
+              <span className="preset-key">{title as string}</span>
+              {(list as Preset[]).map((p) => (
+                <button key={p.id} className={`preset ${p.expected_outcome} ${activePreset === p.id ? "active" : ""}`} onClick={() => runPreset(p)} title={p.record}>
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          ))}
+          <p className="preset-legend">
+            <span className="dot adverse" /> adverse record on file &nbsp; <span className="dot clean" /> expected to come back clear
+          </p>
         </div>
         <p className="smallprint">{FREE_TEXT_DISCLAIMER} Free-text checks are not stored.</p>
       </section>
