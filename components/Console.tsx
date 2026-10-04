@@ -210,6 +210,8 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
   const [name, setName] = useState("");
   const [context, setContext] = useState("");
   const [showContext, setShowContext] = useState(false);
+  /** Exactly what went to the server with the current free-text check, shown on the status line. */
+  const [sentContext, setSentContext] = useState("");
   const [now, setNow] = useState(0);
   const [showHow, setShowHow] = useState(false);
   const [judgeState, setJudgeState] = useState<{ status: "idle" | "running" | "done" | "error"; result: JudgeResult | null; error: string; open: boolean }>({ status: "idle", result: null, error: "", open: false });
@@ -277,6 +279,8 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
   function runPreset(p: Preset) {
     setActivePreset(p.id);
     setName("");
+    setContext("");
+    setShowContext(false);
     start({ preset_id: p.id }, p.name, p.subject_type, false);
   }
 
@@ -284,7 +288,9 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
     e.preventDefault();
     if (name.trim().length < 2) return;
     setActivePreset("");
-    start({ name, context }, name.trim(), "organization", true);
+    const sent = showContext ? context.trim() : "";
+    setSentContext(sent);
+    start({ name, context: sent }, name.trim(), "organization", true);
   }
 
   const report = run.report;
@@ -391,7 +397,15 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
       <section className="intake">
         <form className="intake-form" onSubmit={runFreeText}>
           <input className="name-field" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name of a person or company" maxLength={120} aria-label="Subject name" />
-          <button type="button" className="textbtn" onClick={() => setShowContext((v) => !v)} aria-expanded={showContext}>
+          <button
+            type="button"
+            className="textbtn"
+            onClick={() => {
+              if (showContext) setContext("");
+              setShowContext((v) => !v);
+            }}
+            aria-expanded={showContext}
+          >
             {showContext ? "no context" : "add context"}
           </button>
           <button className="go" disabled={name.trim().length < 2}>
@@ -429,6 +443,9 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
               <span className="console-phase">{phaseText}</span>
               <span className="console-clock">{fmtS(elapsed)}</span>
             </div>
+            {!preset && run.freeText && (
+              <p className="console-record">{sentContext ? `context sent · ${sentContext}` : "no context sent · name only"}</p>
+            )}
             {preset && (
               <p className="console-record">
                 on file · {preset.record}
