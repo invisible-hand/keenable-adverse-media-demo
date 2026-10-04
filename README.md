@@ -81,12 +81,13 @@ npm run dev                  # http://localhost:3000
 
 ## Presets
 
-Five people and five companies, coloured on the page: red for an adverse record stated in an
+Six people and four companies, coloured on the page: red for an adverse record stated in an
 official release (DOJ, FinCEN, CFPB, FCA, ICAC), green for expected clear. The adverse cases are
 recent and deliberately not famous: a UK Ponzi promoter, a Hong Kong asset manager convicted of
-money laundering, two US real estate fraudsters, a crypto marketplace with a guilty plea and a
-FinCEN penalty, a mortgage lender under a CFPB consent order, and a real estate company used as
-the vehicle for a promissory-note fraud. Each carries the official URL and the record it states;
+money laundering, a Miami executive who ran a $300M laundering operation behind a sham tech
+company, a New Hampshire developer who is only indicted (so the file must say "charged"), a
+Massachusetts landlord who defrauded lenders with fake rent rolls, a mortgage lender under a
+CFPB consent order, and a real estate company used as the vehicle for a promissory-note fraud. Each carries the official URL and the record it states;
 `npm run verify:presets` fetches them live.
 
 ## Scripts

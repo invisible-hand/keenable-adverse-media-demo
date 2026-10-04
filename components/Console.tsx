@@ -431,7 +431,6 @@ export default function Console({ presets, llmModel, maxQueries, compareLabel }:
             <span className="dot adverse" /> adverse record on file &nbsp; <span className="dot clean" /> expected to come back clear
           </p>
         </div>
-        <p className="smallprint">{FREE_TEXT_DISCLAIMER} Free-text checks are not stored.</p>
       </section>
 
       {run.status !== "idle" && (
